@@ -1,0 +1,14 @@
+@mixin block-centering-mobile {
+  width: 312px;
+  margin: 0 auto;
+}
+
+@mixin block-centering-tablet {
+  width: 709px;
+  margin: 0 auto;
+}
+
+@mixin block-centering-desktop {
+  width: 1220px;
+  margin: 0 auto;
+}
