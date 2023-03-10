@@ -4,7 +4,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { APIRoute } from '../../consts';
 import { errorHandler } from '../../services/errorHandler';
-import { Character } from '../../types/character.type';
+import { Character, Response } from '../../types/character.type';
 import { SearchParams } from '../../types/search-params.type';
 import { AppDispatch } from '../../types/state.type';
 import { loadCharacters, loadSelectedCharacter } from '../slices/character/character';
@@ -17,10 +17,10 @@ export const fetchCharacters = createAsyncThunk<
   'fetchCharacters',
   async (params: { termSearch: string; pageNumber: number }, { extra: { api }, dispatch }) => {
     try {
-      const { data } = await api.get<Character[]>(
+      const { data } = await api.get<Response>(
         `?${APIRoute.Name}=${params.termSearch}&${APIRoute.Page}=${params.pageNumber}`
       );
-      dispatch(loadCharacters(data));
+      dispatch(loadCharacters(data.results));
     } catch (error) {
       errorHandler(error);
     }
@@ -29,7 +29,7 @@ export const fetchCharacters = createAsyncThunk<
 
 export const fetchSelectedCharacter = createAsyncThunk<
   void,
-  string,
+  string | undefined,
   { extra: { api: AxiosInstance }; dispatch: AppDispatch }
 >('fetchSelectedCharacter', async (characterId, { extra: { api }, dispatch }) => {
   try {

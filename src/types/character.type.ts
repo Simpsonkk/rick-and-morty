@@ -1,3 +1,15 @@
+export type Response = {
+  info: Info;
+  results: Character[];
+};
+
+export type Info = {
+  count: number;
+  next: string | null;
+  pages: number;
+  prev: string | null;
+};
+
 export type Character = {
   id: number;
   name: string;

@@ -7,7 +7,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import App from './components/app';
+import { fetchCharacters } from './store/actions/api-actions';
 import { store } from './store/store';
+
+store.dispatch(fetchCharacters({ termSearch: '', pageNumber: 1 }));
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

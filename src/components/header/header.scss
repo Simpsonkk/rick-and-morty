@@ -1,0 +1,10 @@
+@import '../../assets/styles/block-centering.scss';
+
+.header {
+  @include block-centering-mobile;
+  margin-top: 92px;
+
+  &__banner {
+    width: 100%;
+  }
+}
