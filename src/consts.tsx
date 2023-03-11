@@ -17,17 +17,4 @@ export enum APIRoute {
 
 export enum NameSpace {
   Character = 'characterData',
-  // User = 'userProcess'
 }
-
-export const characterDescription = ['Gender', 'Status', 'Specie', 'Origin', 'Type'];
-
-
-// export enum AuthorizationStatus {
-//   Auth = 'AUTH',
-//   NoAuth = 'NO_AUTH',
-//   Unknown = 'UNKNOWN'
-// }
-
-// export const INITIAL_MOVIE_AMOUNT = 8;
-

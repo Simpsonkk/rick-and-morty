@@ -6,6 +6,10 @@ import CharacterDetails from '../pages/character-details/character-details';
 import Characters from '../pages/characters/characters';
 
 function App() {
+  //DO: delete namespace and root-reducer
+  //DO: create not found page
+  //DO: google auth
+
   return (
     <Routes>
       <Route path={AppRoute.Characters} element={<Characters />} />

@@ -1,6 +1,7 @@
 import request from 'axios';
+import { toast } from 'react-toastify';
+
 import { HttpCode } from '../consts';
-import {toast} from 'react-toastify';
 
 export const errorHandler = (error: unknown): void => {
 
@@ -16,11 +17,13 @@ export const errorHandler = (error: unknown): void => {
         toast.error(response.data.error);
         break;
       case HttpCode.NotFound:
-        toast.info(response.data.error);
+        toast.warning('Nothing found, try another query');
         break;
       case HttpCode.Unauthorized:
-        toast.info(response.data.error);
+        toast.warning(response.data.error);
         break;
+      default:
+        toast.info(response.data.error)
     }
   }
 };

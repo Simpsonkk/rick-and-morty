@@ -1,12 +1,23 @@
 @import '../../assets/styles/block-centering.scss';
+@import '../../assets/styles/device-types.scss';
+
+.main-wrapper {
+  @media (min-width: $desktop-width) {
+    width: 1440px;
+    margin: 0 auto;
+  }
+}
 
 .navigation {
   @include block-centering-mobile;
   margin-bottom: 77px;
-  border: 1px red solid;
+  margin-top: 23px;
+
+  @media (min-width: $desktop-width) {
+    margin: 21px 0 31px 0;
+  }
 
   &__back {
-    border: 1px green solid;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -17,6 +28,7 @@
     line-height: 21px;
     text-transform: uppercase;
     position: relative;
+    cursor: pointer;
 
     &::before {
       content: '';
@@ -30,13 +42,17 @@
   }
 }
 
-.main-container {
+.character {  
   @include block-centering-mobile;
-}
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 85px;
 
-.character {
-  @include block-centering-mobile;
-  border: 1px red solid;
+  @media (min-width: $desktop-width) {
+    width: 500px;
+    margin: 0 auto;
+    margin-bottom: 142px;
+  }
 
   &__img {
     margin-left: 85px;
@@ -44,16 +60,70 @@
     height: 148px;
     border-radius: 150px;
     border: 5px solid #f2f2f7;
+
+    @media (min-width: $desktop-width) {
+      width: 300px;
+      height: 300px;
+    }
   }
 
   &__name {
-    display: flex;
-    justify-content: center;
-    padding-left: 15px;
-    // width: 319px;
+    text-align: center;
     font-size: 32px;
     font-weight: 400;
     line-height: 38px;
-    border: 1px red solid;
+    padding-left: 15px;
+    margin-top: 34px;
+
+    @media (min-width: $desktop-width) {
+      padding-left: 0;
+      margin-top: 10px;
+      font-size: 48px;
+      line-height: 56px;
+    }
+  }
+
+  &__info {
+    margin-top: 35px;
+
+    @media (min-width: $desktop-width) {
+      width: 413px;
+      margin-top: 48px;
+      margin-left: 55px;
+    }
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #8e8e93;
+    margin-bottom: 16px;
+
+    @media (min-width: $desktop-width) {
+      text-align: center;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 64px;
+    margin-left: 16px;
+    border-bottom: 1px rgba(33, 33, 33, 0.08) solid;
+  }
+
+  &__text {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+  }
+
+  &__value {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: #6e798c;
   }
 }

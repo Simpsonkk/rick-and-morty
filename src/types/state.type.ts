@@ -1,10 +1,12 @@
 import { store } from '../store/store';
-import { Character } from './character.type';
+import { CharacterDescription, CharactersInfo } from './character.type';
 
 export type CharacterState = {
-  characters: Character[];
-  selectedCharacter: Character | null;
+  characters: CharacterDescription[];
+  selectedCharacter: CharacterDescription | null;
   isDataLoaded: boolean;
+  termSearch: string;
+  charactersInfo: CharactersInfo | null;
 };
 
 export type State = ReturnType<typeof store.getState>;

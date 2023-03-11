@@ -1,16 +1,16 @@
-export type Response = {
-  info: Info;
-  results: Character[];
+export type Characters = {
+  info: CharactersInfo;
+  results: CharacterDescription[];
 };
 
-export type Info = {
+export type CharactersInfo = {
   count: number;
   next: string | null;
   pages: number;
   prev: string | null;
 };
 
-export type Character = {
+export type CharacterDescription = {
   id: number;
   name: string;
   status: string;

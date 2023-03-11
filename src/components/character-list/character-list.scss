@@ -1,0 +1,12 @@
+@import '../../assets/styles/device-types.scss';
+
+.characters {
+  &__group {
+    @media (min-width: $desktop-width) {
+      margin-top: 61px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+}

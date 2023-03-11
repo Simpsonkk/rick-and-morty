@@ -4,10 +4,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { APIRoute } from '../../consts';
 import { errorHandler } from '../../services/errorHandler';
-import { Character, Response } from '../../types/character.type';
+import { CharacterDescription, Characters } from '../../types/character.type';
 import { SearchParams } from '../../types/search-params.type';
 import { AppDispatch } from '../../types/state.type';
-import { loadCharacters, loadSelectedCharacter } from '../slices/character/character';
+import {
+  loadCharacters,
+  loadCharactersInfo,
+  loadSelectedCharacter,
+} from '../slices/character/character';
 
 export const fetchCharacters = createAsyncThunk<
   void,
@@ -17,9 +21,10 @@ export const fetchCharacters = createAsyncThunk<
   'fetchCharacters',
   async (params: { termSearch: string; pageNumber: number }, { extra: { api }, dispatch }) => {
     try {
-      const { data } = await api.get<Response>(
+      const { data } = await api.get<Characters>(
         `?${APIRoute.Name}=${params.termSearch}&${APIRoute.Page}=${params.pageNumber}`
       );
+      dispatch(loadCharactersInfo(data.info));
       dispatch(loadCharacters(data.results));
     } catch (error) {
       errorHandler(error);
@@ -33,7 +38,7 @@ export const fetchSelectedCharacter = createAsyncThunk<
   { extra: { api: AxiosInstance }; dispatch: AppDispatch }
 >('fetchSelectedCharacter', async (characterId, { extra: { api }, dispatch }) => {
   try {
-    const { data } = await api.get<Character>('/' + characterId);
+    const { data } = await api.get<CharacterDescription>('/' + characterId);
     dispatch(loadSelectedCharacter(data));
   } catch (error) {
     errorHandler(error);

@@ -1,8 +1,15 @@
 @import '../../assets/styles/block-centering.scss';
+@import '../../assets/styles/device-types.scss';
 
 .header {
   @include block-centering-mobile;
   margin-top: 92px;
+
+  @media (min-width: $desktop-width) {
+    width: 600px;
+    height: 200px;
+    margin-top: 86px;
+  }
 
   &__banner {
     width: 100%;
