@@ -1,12 +1,12 @@
 import './characters-search-form.scss';
 
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
-import userAuthIcon from '../../assets/img/user_auth_.svg';
+import userAuthIcon from '../../assets/img/user_auth.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useDebounce } from '../../hooks/useDebounce';
-import { loadTermSearch } from '../../store/slices/character/character';
-import { getTermSearch } from '../../store/slices/character/selectors';
+import { loadTermSearch } from '../../store/slices/character-slice/character-slice';
+import { getTermSearch } from '../../store/slices/character-slice/selectors';
 
 function CharactersSearchForm() {
   const defaultValue = useAppSelector(getTermSearch);
@@ -15,12 +15,16 @@ function CharactersSearchForm() {
 
   const makeRequest = useDebounce(() => {
     dispatch(loadTermSearch(inputValue.trim()));
-  }, 300);
+  }, 400);
 
   const getInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     makeRequest();
   };
+
+  useEffect(() => {
+    sessionStorage.setItem('termSearch', JSON.stringify(inputValue));
+  }, [inputValue]);
 
   return (
     <div className="characters__input-container">

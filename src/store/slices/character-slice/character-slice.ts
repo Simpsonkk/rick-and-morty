@@ -1,19 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { NameSpace } from '../../../consts';
 import { CharacterDescription, CharactersInfo } from '../../../types/character.type';
 import { CharacterState } from '../../../types/state.type';
+import { getTermSearchFromLS, sortCharacters } from '../../../utils';
 
 const initialState: CharacterState = {
   characters: [],
   selectedCharacter: null,
   isDataLoaded: false,
-  termSearch: '',
-  charactersInfo: null
+  termSearch: getTermSearchFromLS(),
+  charactersInfo: null,
 };
 
 export const characterSlice = createSlice({
-  name: NameSpace.Character,
+  name: 'characterSlice',
   initialState,
   reducers: {
     loadCharacters: (state, action: PayloadAction<CharacterDescription[] | null>) => {
@@ -21,6 +21,7 @@ export const characterSlice = createSlice({
         state.characters = [];
         return;
       }
+      action.payload.sort(sortCharacters('name'));
       if (state.characters.length) {
         state.characters = [...state.characters, ...action.payload];
       } else {
@@ -40,9 +41,5 @@ export const characterSlice = createSlice({
   },
 });
 
-export const {
-  loadCharacters,
-  loadSelectedCharacter,
-  loadTermSearch,
-  loadCharactersInfo,
-} = characterSlice.actions;
+export const { loadCharacters, loadSelectedCharacter, loadTermSearch, loadCharactersInfo } =
+  characterSlice.actions;

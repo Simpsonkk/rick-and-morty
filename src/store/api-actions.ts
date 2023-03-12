@@ -2,16 +2,16 @@ import { AxiosInstance } from 'axios';
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { APIRoute } from '../../consts';
-import { errorHandler } from '../../services/errorHandler';
-import { CharacterDescription, Characters } from '../../types/character.type';
-import { SearchParams } from '../../types/search-params.type';
-import { AppDispatch } from '../../types/state.type';
+import { APIRoute } from '../consts';
+import { errorHandler } from '../services/errorHandler';
+import { CharacterDescription, Characters } from '../types/character.type';
+import { SearchParams } from '../types/search-params.type';
+import { AppDispatch } from '../types/state.type';
 import {
   loadCharacters,
   loadCharactersInfo,
   loadSelectedCharacter,
-} from '../slices/character/character';
+} from './slices/character-slice/character-slice';
 
 export const fetchCharacters = createAsyncThunk<
   void,

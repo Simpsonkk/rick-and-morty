@@ -4,11 +4,14 @@ import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchCharacters } from '../../store/actions/api-actions';
-import { loadCharacters } from '../../store/slices/character/character';
+import { fetchCharacters } from '../../store/api-actions';
+import { loadCharacters } from '../../store/slices/character-slice/character-slice';
 import {
-  getCharacters, getCharactersInfo, getLoadedDataStatus, getTermSearch
-} from '../../store/slices/character/selectors';
+  getCharacters,
+  getCharactersInfo,
+  getLoadedDataStatus,
+  getTermSearch,
+} from '../../store/slices/character-slice/selectors';
 import CharacterCard from '../character-card/character-card';
 import Loader from '../loader';
 

@@ -1,7 +1,6 @@
 export enum AppRoute {
   Characters = '/',
   CharacterDetails = '/:characterId',
-  NotFound = '*',
 }
 
 export enum HttpCode {
@@ -13,8 +12,4 @@ export enum HttpCode {
 export enum APIRoute {
   Name = 'name',
   Page = 'page',
-}
-
-export enum NameSpace {
-  Character = 'characterData',
 }

@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchSelectedCharacter } from '../../store/actions/api-actions';
-import { getSelectedCharacter } from '../../store/slices/character/selectors';
+import { fetchSelectedCharacter } from '../../store/api-actions';
+import { getSelectedCharacter } from '../../store/slices/character-slice/selectors';
 
 function CharacterDetails() {
   const { characterId } = useParams();
@@ -20,7 +20,9 @@ function CharacterDetails() {
   return (
     <main className="main-wrapper">
       <section className="navigation">
-        <p onClick={() => navigate(-1)} className="navigation__back">go back</p>
+        <p onClick={() => navigate(-1)} className="navigation__back">
+          go back
+        </p>
       </section>
       <section className="character">
         <img className="character__img" src={character?.image} alt="character" />
