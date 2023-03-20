@@ -12,7 +12,7 @@ function CharacterCard({ character }: CharacterCardProps) {
   const navigate = useNavigate();
 
   return (
-    <li onClick={() => navigate(`${character.id}`)} className="characters__item">
+    <li onClick={() => navigate('/' + character.id)} className="characters__item">
       <img className="characters__img" src={character.image} alt="character" />
       <div className="characters__description">
         <h4 className="characters__name">

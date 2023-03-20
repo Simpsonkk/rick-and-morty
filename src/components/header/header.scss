@@ -3,15 +3,58 @@
 
 .header {
   @include block-centering-mobile;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 92px;
 
   @media (min-width: $desktop-width) {
-    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 200px;
+    width: 600px;
     margin-top: 86px;
   }
 
   &__banner {
     width: 100%;
+    height: 168px;
+  }
+
+  &__user {
+    width: 312px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    // align-items: center;
+
+    @media (min-width: $desktop-width) {
+      width: 600px;
+    }
+  }
+
+  &__button {
+    cursor: pointer;
+    padding: 5px 16px;
+    border: 1px solid;
+    border-radius: 6px;
+    background-color: #fafbfc;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-color: #1b1f2326;
+    &:hover {
+      background-color: #f3f4f6d6;
+    }
+  }
+  &__img {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+
+    @media (min-width: $desktop-width) {
+      margin-right: 10px;
+    }
   }
 }
