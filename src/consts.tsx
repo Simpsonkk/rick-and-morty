@@ -1,6 +1,6 @@
 export enum AppRoute {
-  Characters = '/',
-  CharacterDetails = '/:characterId',
+  Characters = '/rick-and-morty',
+  CharacterDetails = '/rick-and-morty/:characterId',
 }
 
 export enum HttpCode {

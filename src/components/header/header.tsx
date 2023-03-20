@@ -15,7 +15,6 @@ function Header() {
     let token;
     if (typeof response === 'string') {
       token = response;
-      
     } else {
       token = response.credential;
       saveToken(response.credential);
@@ -40,13 +39,13 @@ function Header() {
       callback: token ? handleCallbackResponse(token) : handleCallbackResponse,
     });
 
-    if (!token) {
-      google.accounts.id.renderButton(document.getElementById('signInDiv'), {
-        theme: 'outline',
-        size: 'large',
-        type: 'standard',
-      });
+    google.accounts.id.renderButton(document.getElementById('signInDiv'), {
+      theme: 'outline',
+      size: 'large',
+      type: 'standard',
+    });
 
+    if (!token) {
       google.accounts.id.prompt();
     }
   }, []);
