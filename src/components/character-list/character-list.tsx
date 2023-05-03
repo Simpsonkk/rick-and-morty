@@ -4,42 +4,46 @@ import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchCharacters } from '../../store/api-actions';
+import { useGetCharactersQuery } from '../../store/characters-api';
 import { loadCharacters } from '../../store/slices/character-slice/character-slice';
 import {
-  getCharacters,
-  getCharactersInfo,
-  getLoadedDataStatus,
-  getTermSearch,
+  getCharacters, getLoadedDataStatus, getTermSearch
 } from '../../store/slices/character-slice/selectors';
 import CharacterCard from '../character-card/character-card';
 import Loader from '../loader';
 
 function CharacterList() {
-  const charactersInfo = useAppSelector(getCharactersInfo);
-  const characters = useAppSelector(getCharacters);
   const termSearch = useAppSelector(getTermSearch);
+  const [pageNumber, setPageNumber] = useState<number>(1);
+
+  const { data, error } = useGetCharactersQuery({ termSearch, pageNumber });
+  const characters = useAppSelector(getCharacters);
   const isDataLoaded = useAppSelector(getLoadedDataStatus);
   const dispatch = useAppDispatch();
-  const [pageNumber, setpageNumber] = useState<number>(1);
 
-  const hasMore = charactersInfo?.pages === pageNumber;
-  const setNextPage = () => setpageNumber((prev) => prev + 1);
-
-  useEffect(() => {
-    dispatch(fetchCharacters({ termSearch, pageNumber }));
-  }, [termSearch, pageNumber]);
+  const hasMore = data?.info.pages === pageNumber;
+  const setNextPage = () => setPageNumber((prev) => prev + 1);
 
   useEffect(() => {
-    setpageNumber(1);
+    setPageNumber(1);
     dispatch(loadCharacters(null));
   }, [termSearch]);
+
+  useEffect(() => {
+    if (data) {
+      dispatch(loadCharacters(data.results));
+    }
+  }, [data]);
 
   if (!isDataLoaded) {
     return <Loader />;
   }
 
-  return (
+  return error ? (
+    <p className="characters__error">
+      Error {'status' in error && error.status}, try another query
+    </p>
+  ) : (
     <InfiniteScroll
       next={setNextPage}
       hasMore={!hasMore}

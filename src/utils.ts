@@ -1,4 +1,4 @@
-import { CharacterDescription } from './types/character.type';
+import { CharacterDescription } from './types/character.types';
 
 export const getTermSearchFromLS = () => {
   const data = sessionStorage.getItem('termSearch');

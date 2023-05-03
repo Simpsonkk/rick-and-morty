@@ -1,7 +1,7 @@
 import { Route } from 'react-router';
 import { Routes } from 'react-router-dom';
 
-import { AppRoute } from '../consts';
+import { AppRoute } from '../enums';
 import CharacterDetails from '../pages/character-details/character-details';
 import Characters from '../pages/characters/characters';
 

@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 import { useEffect, useState } from 'react';
 
 import { getToken, removeToken, saveToken } from '../../services/token';
-import { User } from '../../types/user.type';
+import { User } from '../../types/user.types';
 
 declare const google: any;
 

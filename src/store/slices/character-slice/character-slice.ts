@@ -1,15 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { CharacterDescription, CharactersInfo } from '../../../types/character.type';
-import { CharacterState } from '../../../types/state.type';
-import { getTermSearchFromLS, sortCharacters } from '../../../utils';
+import { CharacterDescription } from '../../../types/character.types';
+import { CharacterState } from '../../../types/state.types';
+import { sortCharacters } from '../../../utils';
 
 const initialState: CharacterState = {
   characters: [],
-  selectedCharacter: null,
   isDataLoaded: false,
-  termSearch: getTermSearchFromLS(),
-  charactersInfo: null,
+  termSearch: '',
 };
 
 export const characterSlice = createSlice({
@@ -21,25 +19,18 @@ export const characterSlice = createSlice({
         state.characters = [];
         return;
       }
-      action.payload.sort(sortCharacters('name'));
+      const sortedCharacters = [...action.payload].sort(sortCharacters('name'));
       if (state.characters.length) {
-        state.characters = [...state.characters, ...action.payload];
+        state.characters = [...state.characters, ...sortedCharacters];
       } else {
-        state.characters = action.payload;
+        state.characters = sortedCharacters;
       }
       state.isDataLoaded = true;
-    },
-    loadSelectedCharacter: (state, action: PayloadAction<CharacterDescription>) => {
-      state.selectedCharacter = action.payload;
     },
     loadTermSearch: (state, action: PayloadAction<string>) => {
       state.termSearch = action.payload;
     },
-    loadCharactersInfo: (state, action: PayloadAction<CharactersInfo>) => {
-      state.charactersInfo = action.payload;
-    },
   },
 });
 
-export const { loadCharacters, loadSelectedCharacter, loadTermSearch, loadCharactersInfo } =
-  characterSlice.actions;
+export const { loadCharacters, loadTermSearch } = characterSlice.actions;

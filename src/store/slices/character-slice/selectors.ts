@@ -1,8 +1,7 @@
-import { CharacterDescription, CharactersInfo } from '../../../types/character.type';
-import { State } from '../../../types/state.type';
+import { CharacterDescription, CharactersInfo } from '../../../types/character.types';
+import { State } from '../../../types/state.types';
 
-export const getCharacters = (state: State): CharacterDescription[] => state.characters;
-export const getSelectedCharacter = (state: State): CharacterDescription | null => state.selectedCharacter;
-export const getLoadedDataStatus = (state: State): boolean => state.isDataLoaded;
-export const getTermSearch = (state: State): string => state.termSearch;
-export const getCharactersInfo = (state: State): CharactersInfo | null => state.charactersInfo;
+export const getCharacters = (state: State): CharacterDescription[] =>
+  state.characterSlice.characters;
+export const getLoadedDataStatus = (state: State): boolean => state.characterSlice.isDataLoaded;
+export const getTermSearch = (state: State): string => state.characterSlice.termSearch;
